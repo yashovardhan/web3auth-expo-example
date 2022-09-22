@@ -16,6 +16,7 @@ const resolvedRedirectUrl =
     ? Linking.createURL("web3auth", {})
     : Linking.createURL("web3auth", { scheme: scheme });
 
+const clientId = "YOUR_CLIENT_ID";
 const providerUrl = "homestead"; // Or your desired provider url
       
 export default function App() {
@@ -27,7 +28,7 @@ export default function App() {
     try {
       setConsole("Logging in");
       const web3auth = new Web3Auth(WebBrowser, {
-        clientId: "BP-HcHP_eD6X-TEZhh_yTC2p9skVcoe2iwqcvDH2jV2kHxEr7U8_ZsMARgiwl_5jX9FYRNuKjtzBHfam_GUe6qg",
+        clientId,
         network: OPENLOGIN_NETWORK.TESTNET, // or other networks
       });
       const info = await web3auth.login({
@@ -39,6 +40,7 @@ export default function App() {
 
       setUserInfo(info);
       setKey(info.privKey);
+      uiConsole("Logged In");
     } catch (e) {
       uiConsole(e);
     }
